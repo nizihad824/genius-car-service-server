@@ -25,7 +25,7 @@ async function run(){
         app.get('/service',async(req,res)=>{
             const query ={};
             const cursor =serviceCollection.find(query)
-            const services =await cursor.toArray();
+            const services =await cursor.toArray(); 
             res.send(services);
         });
         app.get('/service/:id',async(req,res)=>{
@@ -33,11 +33,13 @@ async function run(){
             const query ={_id: ObjectId(id)};
             const service = await serviceCollection.findOne(query);
             res.send(service);
-
-
         })
-
-
+        //POST
+        app.post('/service',async(req,res)=>{
+            const newService =req.body;
+            const result = await serviceCollection.insertOne(newService)
+            res.send(result)
+        })
     }
     finally{
 
@@ -45,6 +47,7 @@ async function run(){
 
 }
 run().catch(console.dir)
+
 
 
 
