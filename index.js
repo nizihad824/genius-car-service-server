@@ -105,7 +105,7 @@ run().catch(console.dir)
 
 
 
-app.get('/hero',(req,res)=>{
+app.get('/zero',(req,res)=>{
     res.send('hero meets hero ku')
 })
 
